@@ -4,7 +4,9 @@ import joblib
 import pandas as pd
 
 app = Flask(__name__)
-CORS(app)  # Bật giấy thông hành, cho phép Web từ Vercel gọi vào API này
+
+# Cấu hình CORS cực mạnh: Cho phép mọi domain (*) gọi vào API này
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Tải "bộ não" AI
 model = joblib.load('battery_ai_model.pkl')
